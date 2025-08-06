@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoMail - AI Email Generator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="background-gradient"></div>
+    
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <span class="logo-text">GoMail</span>
+                <span class="logo-subtitle">AI</span>
+            </div>
+            <nav class="nav">
+                <button class="nav-btn active">
+                    <i class="fas fa-envelope"></i>
+                    Generate
+                </button>
+                <button class="nav-btn">
+                    <i class="fas fa-history"></i>
+                    History
+                </button>
+            </nav>
+            <div class="header-actions">
+                <button class="btn-icon">
+                    <i class="fas fa-user-circle"></i>
+                </button>
+                <button class="btn-icon menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="hero-content">
+                    <h1 class="hero-title">
+                        Generate Professional 
+                        <span class="gradient-text">AI Emails</span>
+                    </h1>
+                    <p class="hero-description">
+                        Create powerful, personalized emails with AI and send them instantly to multiple recipients
+                    </p>
+                </div>
+            </section>
+
+            <!-- Email Templates Section -->
+            <section class="email-templates">
+                <div class="section-header">
+                    <h2>Email Templates</h2>
+                    <div class="template-count">2</div>
+                </div>
+                
+                <div class="templates-grid">
+                    <div class="template-card active" data-template="business">
+                        <div class="card-icon business">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                        <h3>Business Emails</h3>
+                        <p>Professional communication</p>
+                        <div class="card-badge">Pro</div>
+                    </div>
+                    
+                    <div class="template-card" data-template="personal">
+                        <div class="card-icon personal">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h3>Personal Emails</h3>
+                        <p>Casual communication</p>
+                        <div class="card-badge">Free</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Email Generation Form -->
+            <section class="email-generation">
+                <div class="form-card">
+                    <div class="form-header">
+                        <h3>Create Your Email</h3>
+                    </div>
+                    
+                    <div class="form-content">
+                        <div class="input-group">
+                            <label for="recipients">
+                                <i class="fas fa-users"></i>
+                                Recipients
+                            </label>
+                            <div class="input-wrapper">
+                                <input 
+                                    type="text" 
+                                    id="recipients" 
+                                    placeholder="john@example.com, jane@example.com"
+                                    class="input-field"
+                                >
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="emailPrompt">
+                                <i class="fas fa-edit"></i>
+                                Email Prompt
+                            </label>
+                            <div class="input-wrapper">
+                                <textarea 
+                                    id="emailPrompt"
+                                    placeholder="Describe the email you want to generate..."
+                                    class="textarea-field"
+                                    rows="4"
+                                ></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button class="btn-primary" id="generateBtn">
+                                <i class="fas fa-magic"></i>
+                                Generate Email
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Generated Email Preview -->
+            <section class="email-preview" id="emailPreview" style="display: none;">
+                <div class="form-card">
+                    <div class="form-header">
+                        <h3>Generated Email</h3>
+                        <button class="btn-regenerate" id="regenerateBtn">
+                            <i class="fas fa-redo"></i>
+                            Regenerate
+                        </button>
+                    </div>
+                    
+                    <div class="form-content">
+                        <div class="input-group">
+                            <label for="subject">
+                                <i class="fas fa-tag"></i>
+                                Subject
+                            </label>
+                            <div class="input-wrapper">
+                                <input 
+                                    type="text" 
+                                    id="subject" 
+                                    placeholder="Email subject will appear here..."
+                                    class="input-field"
+                                >
+                                <button class="edit-btn" id="editSubject">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="body">
+                                <i class="fas fa-align-left"></i>
+                                Email Body
+                            </label>
+                            <div class="input-wrapper">
+                                <textarea 
+                                    id="body" 
+                                    placeholder="Generated email content will appear here..."
+                                    class="textarea-field"
+                                    rows="8"
+                                ></textarea>
+                                <button class="edit-btn" id="editBody">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button class="btn-secondary" id="cancelBtn">
+                                <i class="fas fa-times"></i>
+                                Cancel
+                            </button>
+                            <button class="btn-primary" id="sendBtn">
+                                <i class="fas fa-paper-plane"></i>
+                                Send Email
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <p class="loading-text">Generating your email...</p>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal-overlay" id="successModal">
+        <div class="modal">
+            <div class="modal-header">
+                <i class="fas fa-check-circle success-icon"></i>
+                <h3>Email Sent Successfully!</h3>
+            </div>
+            <div class="modal-body">
+                <p>Your email has been sent to all recipients.</p>
+            </div>
+            <div class="modal-actions">
+                <button class="btn-primary" id="closeModal">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="./main.js"></script>
+</body>
+</html>
